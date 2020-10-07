@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="apt4adam" default="jar" basedir=".">
+	
+	<target name="jar"	description="Build a jar file containing all the needed stuff used in the ADAM tool.">
+		<ant antfile="./build.xml" target="verify-modules" useNativeBasedir="true"/>
+		
+		<jar destfile="apt4adam.jar" duplicate="fail">
+			<fileset dir="classes/io/" />
+			<fileset dir="classes/glue/" />
+			<fileset dir="classes/lib/" />
+			<zipfileset dir="classes/module/uniol/apt/analysis/exception" prefix="uniol/apt/analysis/exception" />
+			<zipfileset dir="classes/module/uniol/apt/analysis/language" prefix="uniol/apt/analysis/language" /> <!-- only FiringSequence for bounded-->
+			<zipfileset dir="classes/module/uniol/apt/analysis/bounded" prefix="uniol/apt/analysis/bounded" />
+			<zipfileset dir="classes/module/uniol/apt/analysis/coverability" prefix="uniol/apt/analysis/coverability" />
+			<zipfileset dir="classes/module/uniol/apt/analysis/invariants" prefix="uniol/apt/analysis/invariants" />
+			<zipfileset dir="classes/module/uniol/apt/analysis/conpres" prefix="uniol/apt/analysis/conpres" />
+			<zipfileset dir="classes/module/uniol/apt/analysis/connectivity" prefix="uniol/apt/analysis/connectivity" />
+			<zipfileset dir="classes/module/uniol/apt/analysis/isomorphism" prefix="uniol/apt/analysis/isomorphism" /> <!-- this we use and the above are used for this module -->
+			<zipfileset dir="classes/module/uniol/apt/analysis/deterministic" prefix="uniol/apt/analysis/deterministic" />
+			<zipfileset dir="classes/module/uniol/apt/analysis/totallyreachable" prefix="uniol/apt/analysis/totallyreachable" />
+			
+		<!--	<zipfileset includes="**/*.class" src="lib/commons-io-2.4/commons-io-2.4.jar" />
+			<zipfileset includes="**/*.class" src="lib/commons-collections4-4.0/commons-collections4-4.0.jar" />
+			<zipfileset includes="**/*.class" src="lib/antlr-4.5.1/antlr-runtime-4.5.1.jar" />
+			<zipfileset includes="**/*.class" src="lib/stringtemplate-4.0.8/ST-4.0.8.jar" />
+			<zipfileset includes="**/*.class" src="lib/sat4j-2.3.2/org.sat4j.core.jar" />
+			<zipfileset includes="**/*.class" src="lib/smtinterpol-2.1-219-g60cc1b6/smtinterpol.jar"/>-->
+		</jar>
+		
+		<jar destfile="apt4adam_src.jar" duplicate="fail">
+			<fileset dir="src/io/" />
+			<fileset dir="src/glue/" />
+			<fileset dir="src/lib/" />
+			<zipfileset dir="src/module/uniol/apt/analysis/exception" prefix="uniol/apt/analysis/exception" />
+			<zipfileset dir="src/module/uniol/apt/analysis/language" prefix="uniol/apt/analysis/language" /> <!-- only FiringSequence for bounded-->
+			<zipfileset dir="src/module/uniol/apt/analysis/bounded" prefix="uniol/apt/analysis/bounded" />
+			<zipfileset dir="src/module/uniol/apt/analysis/coverability" prefix="uniol/apt/analysis/coverability" />
+			<zipfileset dir="src/module/uniol/apt/analysis/invariants" prefix="uniol/apt/analysis/invariants" />
+			<zipfileset dir="src/module/uniol/apt/analysis/conpres" prefix="uniol/apt/analysis/conpres" />
+			<zipfileset dir="src/module/uniol/apt/analysis/connectivity" prefix="uniol/apt/analysis/connectivity" />
+			<zipfileset dir="src/module/uniol/apt/analysis/isomorphism" prefix="uniol/apt/analysis/isomorphism" /> <!-- this we use and the above are used for this module -->
+			<zipfileset dir="src/module/uniol/apt/analysis/deterministic" prefix="uniol/apt/analysis/deterministic" />
+			<zipfileset dir="src/module/uniol/apt/analysis/totallyreachable" prefix="uniol/apt/analysis/totallyreachable" />
+		</jar>
+	</target>
+	<import file="build.local.xml" optional="true"/>
+</project>
